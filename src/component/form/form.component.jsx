@@ -23,9 +23,10 @@ class Form extends React.Component{
         cur = JSON.parse(cur);
         var list =[];
         list.push(<option value="Not Selected">Not Selected</option>);
-        cur.states.map((el)=>{
-            list.push(<option value={JSON.stringify(el)} name = {el.name}>{el.name}</option>);
+        const list2 =cur.states.map((el)=>{
+            return(<option value={JSON.stringify(el)} name = {el.name}>{el.name}</option>);
         })
+        list.push(list2);
         ReactDOM.render(list, document.getElementById('state'));
     }
 
@@ -50,7 +51,7 @@ class Form extends React.Component{
         
         if(name===""||name.length<4||name.length>10)this.showerror({Status:"FAIL",message:"Invalid Name"});       
         else if(birthday==="" || birthday>Date.now())this.showerror({Status:"FAIL",message:"Invalid Birthday"});
-        else if(contact==="" ||contact.length!=10)this.showerror({Status:"FAIL",message:"Invalid Contact details"});
+        else if(contact==="" ||contact.length!==10)this.showerror({Status:"FAIL",message:"Invalid Contact details"});
         else if(country==="")this.showerror({Status:"FAIL",message:"Invalid Country Details"});
         else if(state==="")this.showerror({Status:"FAIL",message:"Invalid State Details"});
         else if(email==="")this.showerror({Status:"FAIL",message:"Invalid Email"});
@@ -63,9 +64,11 @@ class Form extends React.Component{
             res = JSON.parse(res);
             var list =[];
             list.push(<option value="Not Selected" name = "Not Selected">Not Selected</option>);
-            res.map((el)=>{
-                list.push(<option value={JSON.stringify(el)} name ={el.name} >{el.name}</option>);
+
+            const list2 = res.map((el)=>{
+                return(<option value={JSON.stringify(el)} name ={el.name} >{el.name}</option>);
             })
+            list.push(list2);
             ReactDOM.render(list, document.getElementById('country'));
         })
 
